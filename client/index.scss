@@ -19,6 +19,25 @@ input {
   }
 }
 
+#balance2 {
+  border: 1px solid black;
+  background-color: white;
+  margin: 10px 0;
+  padding: 5px 0;
+  &:before {
+    content: "Balance:";
+  }
+}
+
+#balance3 {
+  border: 1px solid black;
+  background-color: white;
+  margin: 10px 0;
+  padding: 5px 0;
+  &:before {
+    content: "Balance:";
+  }
+}
 .components {
   display: flex;
   flex-wrap: wrap;

@@ -15,6 +15,34 @@ document.getElementById("exchange-address").addEventListener('input', ({ target:
   });
 });
 
+
+document.getElementById("exchange-address2").addEventListener('input', ({ target: {value} }) => {
+  if(value === "") {
+    document.getElementById("balance2").innerHTML = 0;
+    return;
+  }
+
+  fetch(`${server}/balance/${value}`).then((response) => {
+    return response.json();
+  }).then(({ balance }) => {
+    document.getElementById("balance2").innerHTML = balance;
+  });
+});
+
+
+document.getElementById("exchange-address3").addEventListener('input', ({ target: {value} }) => {
+  if(value === "") {
+    document.getElementById("balance3").innerHTML = 0;
+    return;
+  }
+
+  fetch(`${server}/balance/${value}`).then((response) => {
+    return response.json();
+  }).then(({ balance }) => {
+    document.getElementById("balance3").innerHTML = balance;
+  });
+});
+
 document.getElementById("transfer-amount").addEventListener('click', () => {
   const sender = document.getElementById("exchange-address").value;
   const amount = document.getElementById("send-amount").value;
