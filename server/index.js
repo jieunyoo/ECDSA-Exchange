@@ -20,7 +20,6 @@ console.log(publicX1)
 
 var value1 = 100;
 var obj = {};
-
 obj[publicX1] = value1
 const balances = obj;
 
@@ -31,6 +30,7 @@ const balances = obj;
 //}
 
 console.log(balances)
+
 app.get('/balance/:address', (req, res) => {
   const {address} = req.params;
   const balance = balances[address] || 0;
@@ -46,4 +46,8 @@ app.post('/send', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}!`);
+});
+
+app.get('/PA1X', (req, res) => {
+  res.send({ address: publicX1 });
 });

@@ -72,3 +72,18 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
 	     walletBalance3.innerHTML = balanceRec; }
      })
 })
+
+//document.addEventListener("DOMContentLoaded", function(){
+//fetch(`${server}/PA1X/`).then((response) => {
+  //return response.json();
+//}).then(({ address }) => {
+  //document.getElementById("publicAddress1X").innerHTML = address;
+//});
+//});
+
+const request = new Request(`${server}/PA1X/`, { method: 'GET', mode: 'cors' });
+fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
+  return response.json();
+}).then(({ address }) => {
+  document.getElementById("publicAddress1X").innerHTML = address;
+})
