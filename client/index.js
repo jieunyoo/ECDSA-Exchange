@@ -23,7 +23,6 @@ wallet1.addEventListener('input', ({ target: {value} }) => {
   });
 });
 
-
 wallet2.addEventListener('input', ({ target: {value} }) => {
   if(value === "") {
     walletBalance2.innerHTML = 0;
@@ -36,7 +35,6 @@ wallet2.addEventListener('input', ({ target: {value} }) => {
     balance2.innerHTML = balance;
   });
 });
-
 
 wallet3.addEventListener('input', ({ target: {value} }) => {
   if(value === "") {
@@ -62,6 +60,8 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
 
   const request = new Request(`${server}/send`, { method: 'POST', body });
 
+
+
   fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
     return response.json();
   }).then(({ balance, balanceRec }) => {
@@ -73,14 +73,7 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
      })
 })
 
-//document.addEventListener("DOMContentLoaded", function(){
-//fetch(`${server}/PA1X/`).then((response) => {
-  //return response.json();
-//}).then(({ address }) => {
-  //document.getElementById("publicAddress1X").innerHTML = address;
-//});
-//});
-
+//this will print out public adddresses and private keys
 const request = new Request(`${server}/PA1X/`, { method: 'GET', mode: 'cors' });
 fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
   return response.json();

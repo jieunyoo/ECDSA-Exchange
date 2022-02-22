@@ -18,11 +18,25 @@ const publicX1 = key.getPublic().x.toString(16);
 const publicY1 = key.getPublic().y.toString(16);
 console.log(publicX1)
 
+const key2 = ec.genKeyPair();
+const publicKey2 = key2.getPublic().encode('hex');
+const privateKey2 = key2.getPrivate().toString(16);
+const publicX2 = key2.getPublic().x.toString(16);
+const publicY2 = key2.getPublic().y.toString(16);
+console.log(publicX2)
+
 var value1 = 100;
 var obj = {};
-obj[publicX1] = value1
-const balances = obj;
+obj[publicX1] = value1;
+let balances = {}
 
+var value2 = 100;
+var obj2 = {}
+obj2[publicX2] = value2;
+balances = {
+  ...obj,
+  ...obj2,
+}
 //const balances = {
 //  "1": 100,
   //"2": 50,
