@@ -2,7 +2,14 @@ import "./index.scss";
 
 const server = "http://localhost:3042";
 
-document.getElementById("exchange-address").addEventListener('input', ({ target: {value} }) => {
+var wallet1 = document.getElementById("exchange-address");
+var wallet2 = document.getElementById("exchange-address2");
+var wallet3 = document.getElementById("exchange-address3");
+
+var walletBalance2 = document.getElementById("balance2");
+var walletBalance3 = document.getElementById("balance3");
+
+wallet1.addEventListener('input', ({ target: {value} }) => {
   if(value === "") {
     document.getElementById("balance").innerHTML = 0;
     return;
@@ -16,7 +23,7 @@ document.getElementById("exchange-address").addEventListener('input', ({ target:
 });
 
 
-document.getElementById("exchange-address2").addEventListener('input', ({ target: {value} }) => {
+wallet2.addEventListener('input', ({ target: {value} }) => {
   if(value === "") {
     document.getElementById("balance2").innerHTML = 0;
     return;
@@ -25,12 +32,12 @@ document.getElementById("exchange-address2").addEventListener('input', ({ target
   fetch(`${server}/balance/${value}`).then((response) => {
     return response.json();
   }).then(({ balance }) => {
-    document.getElementById("balance2").innerHTML = balance;
+    balance2.innerHTML = balance;
   });
 });
 
 
-document.getElementById("exchange-address3").addEventListener('input', ({ target: {value} }) => {
+wallet3.addEventListener('input', ({ target: {value} }) => {
   if(value === "") {
     document.getElementById("balance3").innerHTML = 0;
     return;
@@ -56,7 +63,11 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
 
   fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
     return response.json();
-  }).then(({ balance }) => {
-    document.getElementById("balance").innerHTML = balance;
-  });
-});
+  }).then(({ balance, balanceRec }) => {
+    document.getElementById("balance").innerHTML = balance; 
+    if (recipient == 2) {
+	walletBalance2.innerHTML = balanceRec; }
+    else {
+	walletBalance3.innerHTML = balanceRec; }
+})
+})

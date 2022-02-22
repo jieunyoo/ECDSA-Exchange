@@ -24,7 +24,7 @@ app.post('/send', (req, res) => {
   const {sender, recipient, amount} = req.body;
   balances[sender] -= amount;
   balances[recipient] = (balances[recipient] || 0) + +amount;
-  res.send({ balance: balances[sender] });
+  res.send({ balance: balances[sender], balanceRec: balances[recipient] });
 });
 
 app.listen(port, () => {
