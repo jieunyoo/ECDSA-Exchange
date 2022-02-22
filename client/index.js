@@ -59,14 +59,13 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
   });
 
   const request = new Request(`${server}/send`, { method: 'POST', body });
-
-
-
   fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
     return response.json();
   }).then(({ balance, balanceRec }) => {
     document.getElementById("balance").innerHTML = balance;
-    if (recipient == 2) {
+    console.log(recipient)
+    console.log(wallet2.value)
+    if (recipient == wallet2.value) {
 	     walletBalance2.innerHTML = balanceRec; }
     else {
 	     walletBalance3.innerHTML = balanceRec; }
