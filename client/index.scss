@@ -4,8 +4,10 @@ body {
 }
 
 input {
-  padding: 9px 25px;
+  padding: 9px 55px;
   border-radius: 5px;
+  width: 100%;
+  margin: 10px 0;
   text-transform: uppercase;
 }
 
@@ -49,6 +51,22 @@ input {
     padding: 30px 30px;
     text-align: center;
     border-radius: 50px;
+
+    h1 {
+        margin: 0 0 20px;
+    }
+  }
+}
+.container1 {
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    background-color: white;
+
+    text-align: left;
+    border-radius: 50px;
+    margin: 10px 10px;
+    padding: 10px 15px;
 
     h1 {
         margin: 0 0 20px;
