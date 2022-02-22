@@ -1,4 +1,5 @@
 import "./index.scss";
+const EC = require('elliptic').ec;
 
 const server = "http://localhost:3042";
 
@@ -25,7 +26,7 @@ wallet1.addEventListener('input', ({ target: {value} }) => {
 
 wallet2.addEventListener('input', ({ target: {value} }) => {
   if(value === "") {
-    document.getElementById("balance2").innerHTML = 0;
+    walletBalance2.innerHTML = 0;
     return;
   }
 
@@ -39,14 +40,14 @@ wallet2.addEventListener('input', ({ target: {value} }) => {
 
 wallet3.addEventListener('input', ({ target: {value} }) => {
   if(value === "") {
-    document.getElementById("balance3").innerHTML = 0;
+    walletBalance3.innerHTML = 0;
     return;
   }
 
   fetch(`${server}/balance/${value}`).then((response) => {
     return response.json();
   }).then(({ balance }) => {
-    document.getElementById("balance3").innerHTML = balance;
+    walletBalance3.innerHTML = balance;
   });
 });
 
@@ -64,10 +65,10 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
   fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
     return response.json();
   }).then(({ balance, balanceRec }) => {
-    document.getElementById("balance").innerHTML = balance; 
+    document.getElementById("balance").innerHTML = balance;
     if (recipient == 2) {
-	walletBalance2.innerHTML = balanceRec; }
+	     walletBalance2.innerHTML = balanceRec; }
     else {
-	walletBalance3.innerHTML = balanceRec; }
-})
+	     walletBalance3.innerHTML = balanceRec; }
+     })
 })
