@@ -76,6 +76,14 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
 const request = new Request(`${server}/PA1X/`, { method: 'GET', mode: 'cors' });
 fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
   return response.json();
-}).then(({ address }) => {
+}).then(({ address, addressY, address2X, address2Y, pk1, pk2 }) => {
   document.getElementById("publicAddress1X").innerHTML = address;
+  document.getElementById("publicAddress1Y").innerHTML = addressY;
+  document.getElementById("publicAddress2X").innerHTML = address2X;
+  document.getElementById("publicAddress2Y").innerHTML = address2Y;
+  document.getElementById("privateKey1").innerHTML = pk1;
+  document.getElementById("privateKey2").innerHTML = pk2;
+
+
+
 })

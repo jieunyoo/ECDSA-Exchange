@@ -62,6 +62,7 @@ app.listen(port, () => {
   console.log(`Listening on port ${port}!`);
 });
 
+console.log(publicX2)
 app.get('/PA1X', (req, res) => {
-  res.send({ address: publicX1 });
+  res.send({ address: publicX1, addressY: publicY1, address2X: publicX2, address2Y: publicY2, pk1: privateKey1, pk2: privateKey2 });
 });
