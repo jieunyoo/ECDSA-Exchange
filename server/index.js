@@ -1,9 +1,13 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const port = 3042;
+//const port = 3042;
 const EC = require('elliptic').ec;
 const SHA256 = require('crypto-js/sha256');
+
+const host = '0.0.0.0';
+const port = process.env.PORT || 3000;
+
 
 // localhost can have cross origin errors
 // depending on the browser you use!
@@ -127,14 +131,6 @@ console.log(publicX1)
   }
 
 });
-
-
-
-
-
-
-
-
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}!`);
