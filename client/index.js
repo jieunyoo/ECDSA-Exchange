@@ -21,6 +21,7 @@ wallet1.addEventListener('input', ({ target: {value} }) => {
   }).then(({ balance }) => {
     document.getElementById("balance").innerHTML = balance;
   });
+
 });
 
 wallet2.addEventListener('input', ({ target: {value} }) => {
@@ -61,8 +62,10 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
   const request = new Request(`${server}/send`, { method: 'POST', body });
   fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
     return response.json();
-  }).then(({ balance, balanceRec }) => {
+  }).then(({ balance, balanceRec, sign1R, sign1S  }) => {
     document.getElementById("balance").innerHTML = balance;
+    document.getElementById("sign1R").innerHTML = sign1R;
+    document.getElementById("sign1S").innerHTML = sign1S;
     console.log(recipient)
     console.log(wallet2.value)
     if (recipient == wallet2.value) {
@@ -76,14 +79,11 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
 const request = new Request(`${server}/PA1X/`, { method: 'GET', mode: 'cors' });
 fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
   return response.json();
-}).then(({ address, addressY, address2X, address2Y, pk1, pk2 }) => {
+}).then(({ address, addressY, address2X, address2Y, pk1, pk2, address1R }) => {
   document.getElementById("publicAddress1X").innerHTML = address;
   document.getElementById("publicAddress1Y").innerHTML = addressY;
   document.getElementById("publicAddress2X").innerHTML = address2X;
   document.getElementById("publicAddress2Y").innerHTML = address2Y;
   document.getElementById("privateKey1").innerHTML = pk1;
-  document.getElementById("privateKey2").innerHTML = pk2;
-
-
-
+ document.getElementById("privateKey2").innerHTML = pk2;
 })
