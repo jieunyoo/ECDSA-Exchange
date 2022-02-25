@@ -62,7 +62,8 @@ app.get('/balance/:address', (req, res) => {
   res.send({ balance });
 });
 
-app.post('/send', (req, res) => {
+//*******************************************************
+app.post('/sign', (req, res) => {
   const {sender, recipient, amount} = req.body;
 
   const message = amount;
@@ -78,13 +79,41 @@ app.post('/send', (req, res) => {
       s: signature.s.toString(16)
     }
   });
+  res.send({sign1R: PA1R, sign1S: PA1S });
+  });
 
 
 
-  balances[sender] -= amount;
-  balances[recipient] = (balances[recipient] || 0) + +amount;
-  res.send({ balance: balances[sender], balanceRec: balances[recipient], sign1R: PA1R, sign1S: PA1S });
+
+app.post('/send', (req, res) => {
+  const {sender_verify, recipient_verify, amount_verify} = req.body;
+
+  //const message = amount;
+  //console.log(message)
+  //const msgHash = SHA256(message);
+  //const signature = keySign.sign(msgHash.toString());
+  //const PA1R = signature.r.toString(16);
+  //const PA1S = signature.s.toString(16);
+  //console.log({
+  //  message,
+  //  signature: {
+    //  r: signature.r.toString(16),
+    //  s: signature.s.toString(16)
+    //}
+  //});
+
+  balances[sender_verify] -= amount_verify;
+  balances[recipient_verify] = (balances[recipient_verify] || 0) + +amount_verify;
+  res.send({ balance: balances[sender_verify], balanceRec: balances[recipient_verify]});
 });
+
+
+
+
+
+
+
+
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}!`);

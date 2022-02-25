@@ -50,7 +50,8 @@ wallet3.addEventListener('input', ({ target: {value} }) => {
   });
 });
 
-document.getElementById("transfer-amount").addEventListener('click', () => {
+///**********************
+document.getElementById("sign-button").addEventListener('click', () => {
   const sender = document.getElementById("exchange-address").value;
   const amount = document.getElementById("send-amount").value;
   const recipient = document.getElementById("recipient").value;
@@ -59,21 +60,41 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
     sender, amount, recipient
   });
 
+  const request = new Request(`${server}/sign`, { method: 'POST', body });
+  fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
+    return response.json();
+  }).then(({ sign1R, sign1S  }) => {
+    document.getElementById("sign1R").innerHTML = sign1R;
+    document.getElementById("sign1S").innerHTML = sign1S;
+  })
+})
+///**********************
+
+///**********************
+document.getElementById("transfer-amount").addEventListener('click', () => {
+  const sender_verify = document.getElementById("exchange-address").value;
+  const amount_verify = document.getElementById("send-amount-verify").value;
+  const recipient_verify = document.getElementById("recipient-verify").value;
+
+  const body = JSON.stringify({
+    sender_verify, amount_verify, recipient_verify,
+  });
+
   const request = new Request(`${server}/send`, { method: 'POST', body });
   fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
     return response.json();
-  }).then(({ balance, balanceRec, sign1R, sign1S  }) => {
+  }).then(({ balance, balanceRec  }) => {
     document.getElementById("balance").innerHTML = balance;
-    document.getElementById("sign1R").innerHTML = sign1R;
-    document.getElementById("sign1S").innerHTML = sign1S;
+
     console.log(recipient)
     console.log(wallet2.value)
-    if (recipient == wallet2.value) {
+    if (recipient_verify == wallet2.value) {
 	     walletBalance2.innerHTML = balanceRec; }
     else {
 	     walletBalance3.innerHTML = balanceRec; }
      })
-})
+});
+
 
 //this will print out public adddresses and private keys
 const request = new Request(`${server}/PA1X/`, { method: 'GET', mode: 'cors' });
