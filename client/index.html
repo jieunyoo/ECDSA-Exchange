@@ -7,6 +7,19 @@
   <body>
 
 <div class= "row">
+  <div class="container">
+    <h1> Exchange - Proof of Concept </h1>
+    <h4> This is an implementation of a digital exchange, where people can send money to others using their digital signatures. </h4>
+    <p> Upon page load, at the bottom, you will see two sample accounts loaded. The x and y coordinates of the public key for each account are printed out. Each fake wallet has 100 ETH in it.</p>
+    <p> Below that, the private keys for each account are printed out for each account </p>
+    <p> You can choose a sample account address, and enter the adddress into "Your Address" for your wallet. </p>
+    <p> Then, you can enter another amount to send a recipient. Enter the "SEND AMOUNT" and a "RECIPIENT" address (you choose another fake account from those fake account addresses printed out below). </p>
+    <p> After you click the "TRANSFER AMOUNT" button, the R and S components of the digital signature for the amount you want to send will appear below in "Your Wallet's Digital Signature." </p>
+
+  </div>
+</div>
+
+<div class= "row">
   <div class = "column">
   <div class="components">
       <div class="wallet">
@@ -74,10 +87,12 @@
 
 <div class="row">
   <div class="container">
-    <h1> Public Address 1's Signature </h1>
-      R: <div id = "sign1R"> </div>
-      S: <div id = "sign1S"> </div>
-
+    <div class="addressList">
+      <h1> Your Wallet's Digital Signature </h1>
+      <p> After you enter the amount you want to send (in the above "Send Amount" box), the R and S components of your digital signaturee for the amount will be printed out below" </p>
+        R: <div id = "sign1R"> </div>
+        S: <div id = "sign1S"> </div>
+    </div>
   </div>
 </div>
 
