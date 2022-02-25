@@ -75,25 +75,28 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
   const sender_verify = document.getElementById("exchange-address").value;
   const amount_verify = document.getElementById("send-amount-verify").value;
   const recipient_verify = document.getElementById("recipient-verify").value;
+  const publicKeyX_coordinate = document.getElementById("publicKeyX_coordinate").value;
+
 
   const body = JSON.stringify({
-    sender_verify, amount_verify, recipient_verify,
+    sender_verify, amount_verify, recipient_verify, publicKeyX_coordinate
   });
 
   const request = new Request(`${server}/send`, { method: 'POST', body });
   fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
     return response.json();
-  }).then(({ balance, balanceRec  }) => {
+  }).then(({ balance, balanceRec, isVerified  }) => {
     document.getElementById("balance").innerHTML = balance;
-
     console.log(recipient)
     console.log(wallet2.value)
+    console.log(isVerified)
     if (recipient_verify == wallet2.value) {
 	     walletBalance2.innerHTML = balanceRec; }
     else {
 	     walletBalance3.innerHTML = balanceRec; }
      })
 });
+///**********************
 
 
 //this will print out public adddresses and private keys

@@ -86,7 +86,7 @@ app.post('/sign', (req, res) => {
 
 
 app.post('/send', (req, res) => {
-  const {sender_verify, recipient_verify, amount_verify} = req.body;
+  const {sender_verify, recipient_verify, amount_verify, publicKeyX_coordinate} = req.body;
 
   //const message = amount;
   //console.log(message)
@@ -101,10 +101,31 @@ app.post('/send', (req, res) => {
     //  s: signature.s.toString(16)
     //}
   //});
+  console.log(publicKeyX_coordinate)
+  let isVerified = 0;
+  var nonVerified_sender = sender_verify;
+  var nonVerified_recipient = recipient_verify;
+  var nonVerified_amount = amount_verify;
 
-  balances[sender_verify] -= amount_verify;
-  balances[recipient_verify] = (balances[recipient_verify] || 0) + +amount_verify;
-  res.send({ balance: balances[sender_verify], balanceRec: balances[recipient_verify]});
+console.log(publicKeyX_coordinate)
+console.log(publicX1)
+  if (publicKeyX_coordinate == publicX1) { isVerified = 1;}
+    else { isVerified = 0;}
+
+  if (isVerified == 1) {
+
+    balances[sender_verify] -= amount_verify;
+    balances[recipient_verify] = (balances[recipient_verify] || 0) + +amount_verify;
+    res.send({ balance: balances[sender_verify], balanceRec: balances[recipient_verify]});
+  }
+  else {
+    console.log(isVerified)
+    balances[nonVerified_sender] = balances[nonVerified_sender];
+    balances[nonVerified_recipient] = (balances[nonVerified_recipient] || 0);
+
+    res.send({ balance: balances[nonVerified_sender], balanceRec: balances[nonVerified_recipient]});
+  }
+
 });
 
 
