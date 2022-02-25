@@ -44,9 +44,9 @@ balances = {
 
 
 const ec2 = new EC('secp256k1');
-const privateKey = "9287ed846d63ba72e61997548e011b76e3c63aa185e1f5316868da8d02b385cd";
+//const privateKey = "9287ed846d63ba72e61997548e011b76e3c63aa185e1f5316868da8d02b385cd";
 
-const keySign = ec2.keyFromPrivate(privateKey);
+const keySign = ec2.keyFromPrivate(privateKey1);
 
 // TODO: change this message to whatever you would like to sign
 //const message = "50";
