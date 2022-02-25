@@ -10,12 +10,16 @@
   <div class="container">
     <h1> Exchange - Proof of Concept </h1>
     <h4> This is an implementation of a digital exchange, where people can send money to others using their digital signatures. </h4>
-    <p> Upon page load, at the bottom, you will see two sample accounts loaded. The x and y coordinates of the public key for each account are printed out. Each fake wallet has 100 ETH in it.</p>
-    <p> Below that, the private keys for each account are printed out for each account </p>
-    <p> You can choose a sample account address, and enter the adddress into "Your Address" for your wallet. </p>
-    <p> Then, you can enter another amount to send a recipient. Enter the "SEND AMOUNT" and a "RECIPIENT" address (you choose another fake account from those fake account addresses printed out below). </p>
-    <p> After you click the "TRANSFER AMOUNT" button, the R and S components of the digital signature for the amount you want to send will appear below in "Your Wallet's Digital Signature." </p>
-
+    <p> More information on ECDSA can be found at <a href="https://cryptobook.nakov.com/digital-signatures/ecdsa-sign-verify-messages"> Practical Cryptography</a>
+    <h5> Part 1: Simulation of creation of fake public addresses with keys </h5>
+    <p>Upon page load, at the bottom, you will see two sample accounts loaded. A ECDSA key has x andd y coordinates. The x and y coordinates of the public key for each account are printed out. Each fake wallet has 100 ETH in it.</p>
+    <p> Below that, the private keys for each account are printed out for each account. </p>
+    <h5> Part 2: Simulation of signing a transaction </h5>
+    <p> You can choose a sample account address, and enter the adddress into "Your Address" for your wallet. For simplicity, you are given both x and y coordinates of your public key, but you only should enter the "x" component of your key pair. </p>
+    <p> Then, you can enter another amount to send a recipient. Enter the "SEND AMOUNT" and a "RECIPIENT" address (you can choose another fake account from those fake account addresses printed out below). </p>
+    <p> The ECDSA signing algorithm generates your digital signature, which is a pair of integers, "r" and "s"." After you click the "SIGN" button, the R and S components of the digital signature for the amount you want to send will appear below in "Your Wallet's Digital Signature." </p>
+    <h5> Part 3: Simulation of verification of a transaction </h5>
+    <p> Verification of a signature requires one to have the message (here it will be the amount of ETH to transfer), the public key, and the ECDSA signature {r, s}.
   </div>
 </div>
 
