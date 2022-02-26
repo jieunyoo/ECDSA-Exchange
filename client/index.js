@@ -76,20 +76,21 @@ document.getElementById("transfer-amount").addEventListener('click', () => {
   const amount_verify = document.getElementById("send-amount-verify").value;
   const recipient_verify = document.getElementById("recipient-verify").value;
   const publicKeyX_coordinate = document.getElementById("publicKeyX_coordinate").value;
-
+  const s_coordinate = document.getElementById("s_coordinate").value;
+  const r_coordinate = document.getElementById("r_coordinate").value;
 
   const body = JSON.stringify({
-    sender_verify, amount_verify, recipient_verify, publicKeyX_coordinate
+    sender_verify, amount_verify, recipient_verify, publicKeyX_coordinate, s_coordinate, r_coordinate
   });
 
   const request = new Request(`${server}/send`, { method: 'POST', body });
   fetch(request, { headers: { 'Content-Type': 'application/json' }}).then(response => {
     return response.json();
-  }).then(({ balance, balanceRec, isVerified  }) => {
+  }).then(({ balance, balanceRec  }) => {
     document.getElementById("balance").innerHTML = balance;
     console.log(recipient)
     console.log(wallet2.value)
-    console.log(isVerified)
+
     if (recipient_verify == wallet2.value) {
 	     walletBalance2.innerHTML = balanceRec; }
     else {

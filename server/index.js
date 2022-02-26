@@ -1,18 +1,24 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-//const port = 3042;
+const port = 3042;
 const EC = require('elliptic').ec;
 const SHA256 = require('crypto-js/sha256');
+const path = require('path')
 
-const host = '0.0.0.0';
-const port = process.env.PORT || 3000;
+//const host = '0.0.0.0';
+//const port = process.env.PORT || 3000;
 
 
 // localhost can have cross origin errors
 // depending on the browser you use!
 app.use(cors());
 app.use(express.json());
+
+
+//app.get('/', function(req, res) {
+//  res.sendFile(path.join(__dirname, 'index.html'));
+//});
 
 const ec = new EC('secp256k1');
 const key = ec.genKeyPair();
@@ -90,30 +96,23 @@ app.post('/sign', (req, res) => {
 
 
 app.post('/send', (req, res) => {
-  const {sender_verify, recipient_verify, amount_verify, publicKeyX_coordinate} = req.body;
+  const {sender_verify, recipient_verify, amount_verify, publicKeyX_coordinate, s_coordinate, r_coordinate } = req.body;
 
-  //const message = amount;
-  //console.log(message)
-  //const msgHash = SHA256(message);
-  //const signature = keySign.sign(msgHash.toString());
-  //const PA1R = signature.r.toString(16);
-  //const PA1S = signature.s.toString(16);
-  //console.log({
-  //  message,
-  //  signature: {
-    //  r: signature.r.toString(16),
-    //  s: signature.s.toString(16)
-    //}
-  //});
+  const message = amount_verify;
+  console.log(message)
+  const msgHash = SHA256(message);
+  const signature = keySign.sign(msgHash.toString());
+  const rSig = signature.r.toString(16);
+  const sSig = signature.s.toString(16);
+
   console.log(publicKeyX_coordinate)
   let isVerified = 0;
   var nonVerified_sender = sender_verify;
   var nonVerified_recipient = recipient_verify;
   var nonVerified_amount = amount_verify;
 
-console.log(publicKeyX_coordinate)
-console.log(publicX1)
-  if (publicKeyX_coordinate == publicX1) { isVerified = 1;}
+  console.log(sSig);
+  if (publicKeyX_coordinate == publicX1 && s_coordinate == sSig && r_coordinate == rSig) { isVerified = 1;}
     else { isVerified = 0;}
 
   if (isVerified == 1) {

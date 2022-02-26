@@ -12,14 +12,17 @@
     <h4> This is an implementation of a digital exchange, where people can send money to others using their digital signatures. </h4>
     <p> More information on ECDSA can be found at <a href="https://cryptobook.nakov.com/digital-signatures/ecdsa-sign-verify-messages"> Practical Cryptography</a>
     <h5> Part 1: Simulation of creation of fake public addresses with keys </h5>
-    <p>Upon page load, at the bottom, you will see two sample accounts loaded. A ECDSA key has x andd y coordinates. The x and y coordinates of the public key for each account are printed out. Each fake wallet has 100 ETH in it.</p>
-    <p> Below that, the private keys for each account are printed out for each account. </p>
+    <p> First, we'll simulate the creation of public and private key pairs. We'll use the elliptic.ec library, and create a public and private key pair.
+      Upon page load, at the bottom, you will see two sample accounts loaded.
+      A ECDSA key has x and y coordinates. The x and y coordinates of the public key for each account are printed out. Each fake wallet has 100 ETH in it.
+      Below that, the private keys for each account are printed out for each account. If you want a new pair, refresh the page. </p>
     <h5> Part 2: Simulation of signing a transaction </h5>
     <p> You can choose a sample account address, and enter the adddress into "Your Address" for your wallet. For simplicity, you are given both x and y coordinates of your public key, but you only should enter the "x" component of your key pair. </p>
     <p> Then, you can enter another amount to send a recipient. Enter the "SEND AMOUNT" and a "RECIPIENT" address (you can choose another fake account from those fake account addresses printed out below). </p>
     <p> The ECDSA signing algorithm generates your digital signature, which is a pair of integers, "r" and "s"." After you click the "SIGN" button, the R and S components of the digital signature for the amount you want to send will appear below in "Your Wallet's Digital Signature." </p>
     <h5> Part 3: Simulation of verification of a transaction </h5>
-    <p> Verification of a signature requires one to have the message (here it will be the amount of ETH to transfer), the public key, and the ECDSA signature {r, s}.
+    <p> Let's see you wanted to verify whether a transaction was signed. Verification of a signature requires one to have the message (here it will be the amount of ETH to transfer), the public key, and the ECDSA signature {r, s}. To simulate verification, enter the sender's public key address (only enter the x value since we are doing a simplified case here).
+      Also, enter the recipient's address, and the message (amount), and the R and S values of the digital signature of the sender. If the sender did indeed sign the message, you'll see that the transaction was verified, and balances will be updated.
   </div>
 </div>
 
@@ -51,6 +54,8 @@
         <input type="text" id="send-amount-verify" placeholder="Send Amount" />
         <input type="text" id="recipient-verify" placeholder="Recipient" />
         <input type="text" id="publicKeyX_coordinate" placeholder="public key (x)" />
+        <input type="text" id="r_coordinate" placeholder="r" />
+        <input type="text" id="s_coordinate" placeholder="s" />
         <div class="button" id="transfer-amount">
           Verify and Send Amount
         </div>
@@ -107,7 +112,7 @@
   <div class="container">
     <div class="addressList">
       <h1> Your Wallet's Digital Signature </h1>
-      <p> After you enter the amount you want to send (in the above "Send Amount" box), the R and S components of your digital signaturee for the amount will be printed out below" </p>
+      <p> After you enter the amount you want to send (in the above "Send Amount" box), the R and S components of your digital signaturee for the amount will be printed out below. </p>
         R: <div id = "sign1R"> </div>
         S: <div id = "sign1S"> </div>
     </div>
