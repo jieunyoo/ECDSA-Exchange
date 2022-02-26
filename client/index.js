@@ -2,7 +2,7 @@ import "./index.scss";
 const EC = require('elliptic').ec;
 
 const host = '0.0.0.0';
-const server = 'https://server-bc.herokuapp.com/';
+const server = 'https://server-bc.herokuapp.com';
 
 var wallet1 = document.getElementById("exchange-address");
 var wallet2 = document.getElementById("exchange-address2");
