@@ -4,7 +4,6 @@
   "license": "MIT",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.0.0-rc.0",
     "parcel": "^2.0.0-rc.0",
     "sass": "^1.26.7"
   },
@@ -13,7 +12,8 @@
     "express": "^4.17.1",
     "crypto-js": "^4.0.0",
     "elliptic": "^6.5.2",
-    "parcel-bundler": "^2.3.2"
+    "parcel-bundler": "^2.3.2",
+    "@parcel/transformer-sass": "^2.0.0-rc.0"
   },
  "scripts": {
    "heroku-postbuild": "npx parcel build index.html"
