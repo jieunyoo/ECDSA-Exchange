@@ -1,7 +1,7 @@
 import "./index.scss";
 const EC = require('elliptic').ec;
 
-const server = "http://localhost:3042";
+const server = "http://localhost:3000";
 
 var wallet1 = document.getElementById("exchange-address");
 var wallet2 = document.getElementById("exchange-address2");
