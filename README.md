@@ -5,3 +5,5 @@ This app uses ECDSA cryptography to simulate a blockchain exchange. A randomly g
 This app then simulates the verification of the transaction. The above transaction is completed (ie., the money is sent) only if the signature is verified. Upon successful verification, balances in both accounts are updated.  
 
 The app is live at [ECDSA-Exchange](https://client-bc.herokuapp.com/).
+
+A screenshot of the landing page is: []().
