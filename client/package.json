@@ -1,7 +1,6 @@
 {
   "name": "exchange",
   "version": "1.0.0",
-  "main": "index.js",
   "license": "MIT",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "devDependencies": {
@@ -13,9 +12,10 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "crypto-js": "^4.0.0",
-    "elliptic": "^6.5.2"
+    "elliptic": "^6.5.2",
+    "parcel-bundler": "^2.3.2"
   },
  "scripts": {
-	"start": "node server/index.js"
+   "heroku-postbuild": "npx parcel build index.html"
  }
 }
