@@ -8,7 +8,7 @@ const API = 'http://localhost:3000'
 const EC = require('elliptic').ec;
 
 describe ("GET /", () => {
-  it("it should print a public address", (done) => {
+  it("response should return public addresses and keys", (done) => {
     const ec = new EC('secp256k1');
     const key = ec.genKeyPair();
 
@@ -26,6 +26,12 @@ describe ("GET /", () => {
     .get("/PA1X")
     .end( (err, response) => {
       response.body.should.have.property('address');
+      response.body.should.have.property('addressY');
+      response.body.should.have.property('address2X');
+      response.body.should.have.property('address2Y');
+      response.body.should.have.property('pk1');
+      response.body.should.have.property('pk2');
+
       done();
     })
 
