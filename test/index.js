@@ -25,6 +25,7 @@ describe ("GET /", () => {
     chai.request(API)
     .get("/PA1X")
     .end( (err, response) => {
+      response.should.have.status(200);
       response.body.should.have.property('address');
       response.body.should.have.property('addressY');
       response.body.should.have.property('address2X');
