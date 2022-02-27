@@ -6,4 +6,6 @@ This app then simulates the verification of the transaction. The above transacti
 
 The app is live at [ECDSA-Exchange](https://client-bc.herokuapp.com/).
 
-A screenshot of the landing page is: []().
+A screenshot of the landing page is below.
+
+![photo](https://github.com/jieunyoo/ECDSA-Exchange/blob/main/app-photo.png).
