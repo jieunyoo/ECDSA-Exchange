@@ -56,7 +56,7 @@ app.post('/sign', (req, res) => {
   const {sender, recipient, amount} = req.body;
 
   const message = amount;
-  console.log(message)
+  //console.log(message)
   const msgHash = SHA256(message);
   const signature = keySign.sign(msgHash.toString());
   const PA1R = signature.r.toString(16);
@@ -96,7 +96,7 @@ app.post('/send', (req, res) => {
     res.send({ balance: balances[sender_verify], balanceRec: balances[recipient_verify]});
   }
   else {
-    console.log(isVerified)
+    //console.log(isVerified)
     balances[nonVerified_sender] = balances[nonVerified_sender];
     balances[nonVerified_recipient] = (balances[nonVerified_recipient] || 0);
     res.send({ balance: balances[nonVerified_sender], balanceRec: balances[nonVerified_recipient]});
